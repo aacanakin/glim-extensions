@@ -16,10 +16,10 @@ except ImportError:
 setup(
     author='Aras Can Akin',
     author_email='aacanakin@gmail.com',
-    name='glim',
+    name='glim-extensions',
     packages=find_packages(),
     version=glim_extensions.version,
-    description='Glim extensions',
+    description='Glim Extensions',
     long_description=read('README.rst'),
     url='https://github.com/aacanakin/glim-extensions',
     download_url='https://github.com/aacanakin/glim-extensions/archive/v%s.zip' % glim_extensions.version,
