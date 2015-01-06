@@ -1,5 +1,5 @@
 from setuptools import setup
-import glim
+import glim_extensions
 import os
 from os.path import exists
 
