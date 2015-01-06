@@ -35,6 +35,7 @@ setup(
     ],
     install_requires=[
         "SQLAlchemy",
+		"Jinja2",
         "https://github.com/pinterest/pymemcache.git",
         "redis"
     ],
