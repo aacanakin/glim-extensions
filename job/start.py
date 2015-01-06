@@ -5,4 +5,4 @@ from glim.facades import Log
 
 # extension loader
 def before(config):
-	JobQueue.boot(config, Redis._get(), serializer = JobSerializer())
+	JobQueue.boot(config, Redis._get(), serializer=JobSerializer())
