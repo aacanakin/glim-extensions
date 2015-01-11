@@ -1,0 +1,2 @@
+class GredisError(Exception):
+	pass

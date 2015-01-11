@@ -1,9 +1,11 @@
 import os
+import traceback
 
 from glim.command import Command
-from glim.facades import Log
-from ext.job.queue import JobQueue
-from ext.job.exception import FailedJobError
+from glim import Log
+
+from queue import JobQueue
+from exception import FailedJobError
 
 import glim.paths as paths
 
@@ -24,9 +26,12 @@ class ConsumeCommand(Command):
 				try:
 					job.run()
 					Log.info('job %s is consumed' % job.id)
-				except FailedJobError, e:
+				except FailedJobError as e:
 					Log.error(e)
 					JobQueue.push_failed(job)
+				except Exception as e:
+					Log.error("An unknown exception has occured!!")
+					Log.error(traceback.format_exc())
 				
 
 class ProduceCommand(Command):
@@ -52,8 +57,12 @@ class InitCommand(Command):
 		fhandle = open(jobs_path, 'a')
 		try:
 			os.utime(jobs_path, None)
+			Log.info("app/jobs.py created successfully")
+		except Exception as e:
+			Log.error(e)
 		finally:
 			fhandle.close()
+
 
 # class CreateCommand(Command):
 # 	name = 'create'

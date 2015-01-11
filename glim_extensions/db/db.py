@@ -6,6 +6,8 @@ of glim framework.
 """
 
 from glim.core import Facade
+from glim import Log
+
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
@@ -46,22 +48,24 @@ class Database(object):
         self.engines = {}
 
         for k, config in self.config.items():
+            try:
+                cstring = '%s://%s@%s/%s' % (
+                    config['driver'],
+                    config['user'],
+                    config['password'],
+                    config['schema']
+                )
 
-            cstring = '%s://%s@%s/%s' % (
-                config['driver'],
-                config['user'],
-                config['password'],
-                config['schema']
-            )
+                engine = create_engine(cstring)
+                connection = engine.connect()
+                Session = sessionmaker(bind=engine)
+                session = Session()
 
-            engine = create_engine(cstring)
-            connection = engine.connect()
-            Session = sessionmaker(bind=engine)
-            session = Session()
-
-            self.engines[k] = engine
-            self.sessions[k] = session
-            self.connections[k] = connection
+                self.engines[k] = engine
+                self.sessions[k] = session
+                self.connections[k] = connection
+            except Exception as e:
+                Log.error(e)
 
     def __getattr__(self, attr):
         return getattr(self.connections[self.active], attr)

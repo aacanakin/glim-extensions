@@ -1,4 +1,8 @@
-from ext.memcached.memcached import Cache
+from memcached import Cache
+from glim import Log
 
 def before(config):
-	Cache.register(config)
+	try:
+		Cache.register(config)
+	except Exception as e:
+		Log.error(e)

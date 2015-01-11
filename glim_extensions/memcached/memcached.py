@@ -1,6 +1,6 @@
 from glim.core import Facade
-from glim.component import Extension
-from glim.facades import Log
+from glim.ext import Extension
+from glim import Log
 
 from pymemcache.client import Client, MemcacheError
 
@@ -16,9 +16,8 @@ class MemcachedExtension(Extension):
 	def __getattr__(self, attr):
 		try:
 			return getattr(self.connections[self.active], attr)
-		except Exception, e:
+		except MemcacheError as e:
 			Log.error(e)
-			return None
 
 	def connection(self, key = None):
 		if key:
@@ -34,9 +33,8 @@ class MemcachedExtension(Extension):
 
 			return connection
 
-		except Exception, e:
+		except MemcacheError as e:
 			Log.error(e)
-			return None
 
 class Cache(Facade):
 	accessor = MemcachedExtension

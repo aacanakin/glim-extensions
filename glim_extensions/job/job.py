@@ -2,7 +2,7 @@ import uuid
 import pickle
 import json
 
-from glim.facades import Log
+from glim import Log
 
 class Job:
 

@@ -12,12 +12,15 @@ class GredisExtension(Extension):
 		self.connections = {}
 
 		for k, config in self.config.items():
-			self.connections[k] = self.connect(config)
+			try:
+				self.connections[k] = self.connect(config)
+			except Exception as e:
+				Log.error(e)
 
 	def __getattr__(self, attr):
 		try:
 			return getattr(self.connections[self.active], attr)
-		except redis.RedisError, e:
+		except redis.RedisError as e:
 			Log.error(e)
 			return None
 
@@ -26,7 +29,7 @@ class GredisExtension(Extension):
 			self.active = key
 		else:
 			self.active = 'default'
-		return self
+		return 
 
 	def connect(self, config):
 		try:

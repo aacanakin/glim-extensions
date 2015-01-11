@@ -1,4 +1,4 @@
-from view import ViewFacade as View
+from . import View
 
 # extension loader
 def before(config):

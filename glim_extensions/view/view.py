@@ -5,6 +5,7 @@ view layer of glim framework.
 
 """
 from glim.core import Facade
+from glim.response import Response
 from jinja2 import Environment, PackageLoader
 
 

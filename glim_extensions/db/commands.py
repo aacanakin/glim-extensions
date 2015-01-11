@@ -1,21 +1,18 @@
+import uuid
 import os
 
 import glim.paths as paths
-
-from glim.facades import Config
-from glim.facades import Database as DB
-from glim.facades import Orm
-from glim.facades import Log
-
-from glim.db import Model
-
+from glim import Config
+from glim import Log
 from glim.command import Command
+
+from . import Database as DB
+from . import Orm
+from . import Model
 
 from utils import touch
 from models import Migration
 from migration import MigrationAdapter
-
-import uuid
 
 class InitCommand(Command):
 
@@ -31,9 +28,7 @@ class InitCommand(Command):
         result = touch(migrations_path)
         Log.info("Creating glim_migrations table on db..")
 
-        default_connection = Config.get('extensions.migration.default.db')
-        engine = DB.engine(default_connection)
-
+        engine = DB.engine('default')
         Migration.metadata.create_all(engine)
         Log.info("Done.")
 
@@ -47,7 +42,7 @@ class SyncCommand(Command):
         pass
 
     def run(self):
-        default = Config.get('extensions.migration.default.db')
+        default = Config.get('extensions.db.default')
         all = self.args.name is None
         if all:
             import app.models

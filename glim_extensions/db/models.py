@@ -1,8 +1,8 @@
 import datetime
 
-from glim.db import Database as DB
-from glim.db import Orm
-from glim.db import Model
+from . import Database as DB
+from . import Orm
+from . import Model
 
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy import Column, Integer, String, DateTime, Text

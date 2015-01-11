@@ -1,7 +1,8 @@
 import pyclbr
 
-from glim.db import Database
-from glim.db import Orm
+from . import Database
+from . import Orm
+
 from glim.utils import import_module
 from sqlalchemy import exc
 
@@ -27,17 +28,18 @@ class MigrationAdapter(object):
         self.db = db
         self.orm = orm
         self.migrations_mstr = migrations_mstr
-        self.migrations_module = import_module(migrations_mstr)
+        self.migrations_module = import_module(migrations_mstr, pass_errors=True)
         self.migrations = []
         self.retrieve_migrations()
         
     def retrieve_migrations(self):
-        class_names = pyclbr.readmodule(self.migrations_mstr).keys()
+        if self.migrations_module is not None:
+            class_names = pyclbr.readmodule(self.migrations_mstr).keys()
 
-        for name in class_names:
-            if name != 'Migration' and 'Migration' in name:
-                cobject = getattr(self.migrations_module, name)
-                self.migrations.append(cobject)
+            for name in class_names:
+                if name != 'Migration' and 'Migration' in name:
+                    cobject = getattr(self.migrations_module, name)
+                    self.migrations.append(cobject)
 
     def dispatch(self, name, action='run'):
         for migration in self.migrations:

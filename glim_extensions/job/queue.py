@@ -1,8 +1,9 @@
 from glim.core import Facade
+from glim import Log
 
 class RedisQueue:
 
-	def __init__(self, config, redis, serializer, *args, **kwargs):
+	def __init__(self, config, redis, serializer):
 		self.config = config
 		self.redis = redis
 		self.serializer = serializer
