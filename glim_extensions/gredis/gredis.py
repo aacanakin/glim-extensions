@@ -1,6 +1,6 @@
 from glim.core import Facade
-from glim.component import Extension
-from glim.facades import Log
+from glim.ext import Extension
+from glim import Log
 
 import redis
 
