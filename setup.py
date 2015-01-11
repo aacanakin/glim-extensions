@@ -1,6 +1,9 @@
 from setuptools import setup
+
+import traceback
 import glim_extensions
 import os
+
 from os.path import exists
 
 def read(*paths):
@@ -11,7 +14,7 @@ def read(*paths):
 try:
     from setuptools import setup, find_packages
 except ImportError:
-    from distutils.core import setup, find_packages
+	print(traceback.format_exc())
 
 setup(
     author='Aras Can Akin',
@@ -31,12 +34,13 @@ setup(
         'job queue',
         'SQLAlchemy',
         'Jinja2',
-        'mail queue',
+        'mail queue'
     ],
     install_requires=[
+		"glim",
         "SQLAlchemy",
 		"Jinja2",
-        "https://github.com/pinterest/pymemcache.git",
+        "pymemcache",
         "redis"
     ],
     classifiers=[
