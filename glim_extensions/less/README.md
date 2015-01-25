@@ -58,3 +58,5 @@ Usage
 Roadmap
 -------
 - Autocompile after file changes
+- Show less errors on werkzeug served page
+
