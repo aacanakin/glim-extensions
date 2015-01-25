@@ -8,3 +8,4 @@ The following extensions are included;
 - [jobqueue](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/job) - jobqueue extension for glim framework
 - [memcached](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/memcached) - memcached extension for glim framework
 - [less](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/less) - less extension for glim framework
+- [jslint](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/jslint) - javascript linting extension for glim framework
