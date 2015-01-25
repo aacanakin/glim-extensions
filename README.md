@@ -7,3 +7,4 @@ The following extensions are included;
 - [gredis](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/gredis) - redis extension for glim framework
 - [jobqueue](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/job) - jobqueue extension for glim framework
 - [memcached](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/memcached) - memcached extension for glim framework
+- [less](https://github.com/aacanakin/glim-extensions/tree/master/glim_extensions/less) - less extension for glim framework
