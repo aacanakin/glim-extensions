@@ -1,8 +1,9 @@
 from setuptools import setup
 
 import traceback
-import glim_extensions
 import os
+
+version="0.3.0"
 
 from os.path import exists
 
@@ -21,11 +22,11 @@ setup(
     author_email='aacanakin@gmail.com',
     name='glim-extensions',
     packages=find_packages(),
-    version=glim_extensions.version,
+    version=version,
     description='Glim Extensions',
     long_description=read('README.rst'),
     url='https://github.com/aacanakin/glim-extensions',
-    download_url='https://github.com/aacanakin/glim-extensions/archive/v%s.zip' % glim_extensions.version,
+    download_url='https://github.com/aacanakin/glim-extensions/archive/v%s.zip' % version,
     keywords=[
         'framework',
         'web framework',
@@ -34,7 +35,9 @@ setup(
         'job queue',
         'SQLAlchemy',
         'Jinja2',
-        'mail queue'
+        'mail queue',
+		'jslint',
+		'less'
     ],
     install_requires=[
 		"glim",
