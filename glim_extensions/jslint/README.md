@@ -24,5 +24,4 @@ config = {
 
 Roadmap
 -------
-- Autolint after file changes
 - Show lint errors on served page
